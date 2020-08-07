@@ -1,0 +1,347 @@
+{
+    "name": "figlet-banner",
+    "displayName": "Figlet Banner",
+    "description": "Generate ASCII text banner comments using Figlet.js.",
+    "version": "1.0.0",
+    "author": {
+        "email": "nmsmith22389@gmail.com",
+        "name": "Neil Smith",
+        "url": "https://github.com/nmsmith22389"
+    },
+    "license": "MIT",
+    "publisher": "nmsmith89",
+    "homepage": "https://github.com/nmsmith22389/figlet-banner/blob/master/README.md",
+    "bugs": {
+        "url": "https://github.com/nmsmith22389/figlet-banner/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nmsmith22389/figlet-banner.git"
+    },
+    "engines": {
+        "vscode": "^1.47.0"
+    },
+    "keywords": [
+        "block",
+        "comment",
+        "header",
+        "banner",
+        "figlet"
+    ],
+    "categories": [
+        "Formatters",
+        "Other"
+    ],
+    "_moduleAliases": {
+        "~": "out"
+    },
+    "activationEvents": [
+        "onCommand:figlet-banner.Apply",
+        "onCommand:figlet-banner.ApplyFromList",
+        "onCommand:figlet-banner.ApplyFromFavorites",
+        "onCommand:figlet-banner.ApplyFromConfig",
+        "onCommand:figlet-banner.SetDefaultFont",
+        "onCommand:figlet-banner.SetDefaultFontFromFavorites",
+        "onCommand:figlet-banner.AddFontToFavorites",
+        "onCommand:figlet-banner.AddCurrentFontToFavorites",
+        "onCommand:figlet-banner.RemoveFontFromFavorites",
+        "onCommand:figlet-banner.AddCustomFont",
+        "onCommand:figlet-banner.RemoveCustomFont",
+        "onCommand:figlet-banner.AddNewConfig"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "figlet-banner.Apply",
+                "when": "editorTextFocus && !editorReadonly",
+                "title": "Figlet Banner: Apply"
+            },
+            {
+                "command": "figlet-banner.ApplyFromList",
+                "when": "editorTextFocus && !editorReadonly",
+                "title": "Figlet Banner: Apply From List of Fonts"
+            },
+            {
+                "command": "figlet-banner.ApplyFromFavorites",
+                "when": "editorTextFocus && !editorReadonly",
+                "title": "Figlet Banner: Apply From Favorites"
+            },
+            {
+                "command": "figlet-banner.ApplyFromConfig",
+                "when": "editorTextFocus && !editorReadonly",
+                "title": "Figlet Banner: Apply From Config (works with geddski.macros)"
+            },
+            {
+                "command": "figlet-banner.SetDefaultFont",
+                "title": "Figlet Banner: Set Default Font"
+            },
+            {
+                "command": "figlet-banner.SetDefaultFontFromFavorites",
+                "title": "Figlet Banner: Set Default Font From Favorites"
+            },
+            {
+                "command": "figlet-banner.AddFontToFavorites",
+                "title": "Figlet Banner: Add Font To Favorites"
+            },
+            {
+                "command": "figlet-banner.RemoveFontFromFavorites",
+                "title": "Figlet Banner: Remove Font From Favorites"
+            },
+            {
+                "command": "figlet-banner.AddNewConfig",
+                "title": "Figlet Banner: Add New Config"
+            },
+            {
+                "command": "figlet-banner.TestAllFonts",
+                "when": "editorTextFocus && !editorReadonly",
+                "title": "Figlet Banner: Test All Fonts"
+            },
+            {
+                "command": "figlet-banner.TestFavoriteFonts",
+                "when": "editorTextFocus && !editorReadonly",
+                "title": "Figlet Banner: Test Favorite Fonts"
+            }
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "Figlet Banner",
+            "properties": {
+                "figlet-banner.font": {
+                    "type": "string",
+                    "default": "Standard",
+                    "description": "Default banner font to use.",
+                    "scope": "resource"
+                },
+                "figlet-banner.horizontalLayout": {
+                    "type": "string",
+                    "default": "default",
+                    "enum": [
+                        "default",
+                        "full",
+                        "fitted",
+                        "controlled smushing",
+                        "universal smushing"
+                    ],
+                    "description": "Figlet horizontal layout control.",
+                    "scope": "resource"
+                },
+                "figlet-banner.verticalLayout": {
+                    "type": "string",
+                    "default": "default",
+                    "enum": [
+                        "default",
+                        "full",
+                        "fitted",
+                        "controlled smushing",
+                        "universal smushing"
+                    ],
+                    "description": "Figlet vertical layout control.",
+                    "scope": "resource"
+                },
+                "figlet-banner.trimTrailingWhitespace": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Automatically trims the trailing whitespaces of the generated banner.",
+                    "scope": "resource"
+                },
+                "figlet-banner.trimEmptyLines": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Automatically trim empty lines from output.",
+                    "scope": "resource"
+                },
+                "figlet-banner.prefix": {
+                    "type": "string",
+                    "default": "",
+                    "description": "A String to place before the figlet",
+                    "scope": "resource"
+                },
+                "figlet-banner.suffix": {
+                    "type": "string",
+                    "default": "",
+                    "description": "A String to place after the figlet",
+                    "scope": "resource"
+                },
+                "figlet-banner.perLinePrefix": {
+                    "type": "string",
+                    "default": " ",
+                    "description": "A string to place at the beginning of each line (before comments processed)",
+                    "scope": "resource"
+                },
+                "figlet-banner.commentStyle": {
+                    "type": "string",
+                    "default": "block",
+                    "enum": [
+                        "block",
+                        "line",
+                        "both"
+                    ],
+                    "description": "How comments are used in the output.",
+                    "scope": "resource"
+                },
+                "figlet-banner.favorites": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "title": "Name of Figlet Font"
+                    },
+                    "default": [],
+                    "description": "List of favorites figlet fonts.",
+                    "scope": "resource"
+                },
+                "figlet-banner.customFonts": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "title": "path to .flf font"
+                    },
+                    "default": [],
+                    "description": "List of custom figlet fonts.",
+                    "scope": "resource"
+                },
+                "figlet-banner.configDescriptionKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "title": "key of value in config to display in ApplyFromConfig",
+                        "enum": [
+                            "font",
+                            "horizontalLayout",
+                            "verticalLayout",
+                            "trimTrailingWhitespace",
+                            "trimEmptyLines",
+                            "prefix",
+                            "suffix",
+                            "perLinePrefix",
+                            "commentStyle"
+                        ]
+                    },
+                    "uniqueItems": true,
+                    "default": [
+                        "font"
+                    ],
+                    "description": "List of keys to display in ApplyFromConfig picker",
+                    "scope": "resource"
+                },
+                "figlet-banner.configs": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "description": "The name of the configuration."
+                            },
+                            "description": {
+                                "type": "string",
+                                "description": "The description of the configuration."
+                            },
+                            "font": {
+                                "type": "string",
+                                "description": "Default banner font to use."
+                            },
+                            "horizontalLayout": {
+                                "type": "string",
+                                "default": "default",
+                                "enum": [
+                                    "default",
+                                    "full",
+                                    "fitted",
+                                    "controlled smushing",
+                                    "universal smushing"
+                                ],
+                                "description": "Figlet horizontal layout control."
+                            },
+                            "verticalLayout": {
+                                "type": "string",
+                                "default": "default",
+                                "enum": [
+                                    "default",
+                                    "full",
+                                    "fitted",
+                                    "controlled smushing",
+                                    "universal smushing"
+                                ],
+                                "description": "Figlet vertical layout control."
+                            },
+                            "trimTrailingWhitespace": {
+                                "type": "boolean",
+                                "default": false,
+                                "description": "Automatically trims the trailing whitespaces of the generated banner."
+                            },
+                            "trimEmptyLines": {
+                                "type": "boolean",
+                                "default": false,
+                                "description": "Automatically trim empty lines from output."
+                            },
+                            "prefix": {
+                                "type": "string",
+                                "default": "",
+                                "description": "A String to place before the figlet"
+                            },
+                            "suffix": {
+                                "type": "string",
+                                "default": "",
+                                "description": "A String to place after the figlet"
+                            },
+                            "perLinePrefix": {
+                                "type": "string",
+                                "default": " ",
+                                "description": "A string to place at the beginning of each line (before comments processed)"
+                            },
+                            "commentStyle": {
+                                "type": "string",
+                                "default": "block",
+                                "enum": [
+                                    "block",
+                                    "line",
+                                    "both"
+                                ],
+                                "description": "How comments are used in the output."
+                            }
+                        }
+                    },
+                    "uniqueItems": true,
+                    "default": [],
+                    "markdownDescription": "Hash of stored configs for quick use.\n\n*(All other settings can be used as properties of your config.)*",
+                    "scope": "resource"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "lint": "eslint src --ext ts",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@nmsmith22389/eslint-config": "^1.0.2",
+        "@types/figlet": "^1.2.0",
+        "@types/fs-extra": "^9.0.1",
+        "@types/glob": "^7.1.1",
+        "@types/lodash": "^4.14.158",
+        "@types/mocha": "^8.0.1",
+        "@types/node": "^14.0.27",
+        "@types/vscode": "^1.47.0",
+        "eslint": "^7.6.0",
+        "mocha": "^8.1.1",
+        "ts-node": "^8.10.2",
+        "typescript": "^3.8.3",
+        "vscode-test": "^1.3.0"
+    },
+    "dependencies": {
+        "figlet": "^1.5.0",
+        "fs-extra": "^9.0.1",
+        "i18next-fs-backend": "^1.0.7",
+        "i18next": "^19.6.3",
+        "lodash": "^4.17.19",
+        "module-alias": "^2.2.2"
+    }
+}

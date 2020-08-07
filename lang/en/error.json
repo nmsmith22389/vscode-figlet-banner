@@ -1,0 +1,9 @@
+{
+    "cantCreateBanner": "Could not create banner(s)!",
+    "noName": "You must provide a name",
+    "configExists": "Config with name '{{name}}' already exists",
+    "pathNotFlf": "Provided file path does not contain '.flf'.",
+    "fileDoesNotExist": "Given file does not exist.\n\nPath: '{{file}}",
+    "fontNotLoaded": "The font named '{{font}}' is not loaded.\n\nPlease make sure it exists and try again.",
+    "settingsUpdateFailed": "There was an error updating $(common:extensionName, {\"context\": \"possessive\"}) settings.\n\n$t(common:tryAgain)"
+}

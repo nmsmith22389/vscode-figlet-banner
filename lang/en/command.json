@@ -1,0 +1,5 @@
+{
+    "addCustomFont": {
+        "placeHolder": "Enter an absolute file path to a Figlet font file."
+    }
+}

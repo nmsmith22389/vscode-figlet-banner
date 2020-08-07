@@ -1,0 +1,3 @@
+{
+    "globFontsNotFound": "The glob path '{{glob}}' did not match any font files."
+}

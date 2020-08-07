@@ -1,0 +1,8 @@
+{
+    "configNotFound": "No config found with name '{{name}}'.",
+    "fontInFavorites": "Chosen font '{{font}}' already in favorites.",
+    "fontInFavorites_current": "Current font '${_toString(currentFont)}' is already in favorites.",
+    "fontNotInFavorites": "No fonts in favorites list.",
+    "customFontExists": "Custom font already exists.",
+    "noCustomFontsSaved": "No custom fonts saved."
+}

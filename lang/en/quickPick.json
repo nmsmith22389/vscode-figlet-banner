@@ -1,0 +1,33 @@
+{
+    "defaultValue": {
+        "label": "Default Value",
+        "description": ""
+    },
+    "chooseFont": {
+        "description": "Use the {{font}} font",
+        "placeHolder": "font"
+    },
+    "noFavorites": {
+        "label": "🚨 No Favorite Fonts! 🚨",
+        "detail": "Add a font to Favorites to continue."
+    },
+    "commentStyle": {
+        "block": {
+            "description": "prefer block style comments"
+        },
+        "line": {
+            "description": "prefer line style comments"
+        },
+        "both": {
+            "description": "always render both style comments"
+        }
+    },
+    "saveDefaults": { "placeHolder": "Store default values in config?" },
+    "nameInput": { "prompt": "Enter a name to save the configuration as." },
+    "descriptionInput": { "prompt": "Enter a description of the configuration or leave it blank." },
+    "emptyOrDefault": "'' for empty, Esc for Default Value",
+    "prefixInput": { "prompt": "prefix: $(emptyOrDefault)" },
+    "suffixInput": { "prompt": "suffix: $(emptyOrDefault)" },
+    "perLinePrefixInput": { "prompt": "perLinePrefix: $(emptyOrDefault)" },
+    "fromConfig": { "description": "Font: {{font}}" }
+}
