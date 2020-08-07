@@ -1,39 +1,3 @@
-/*
- *     _           _  __                _          _
- *    / \ |  _|   |_ (_  |  o ._ _|_   /   _  ._ _|_ o  _
- *    \_/ | (_|   |_ __) |_ | | | |_   \_ (_) | | |  | (_|
- *                                                      _|
- */
-
-/*
-{
-    "root": true,
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "@typescript-eslint"
-    ],
-    "rules": {
-        "@typescript-eslint/class-name-casing": "warn",
-        "@typescript-eslint/semi": "warn",
-        "curly": "warn",
-        "eqeqeq": "warn",
-        "no-throw-literal": "warn",
-        "semi": "off"
-    }
-}
- */
-
-/*
- *                     _          _
- *    |\ |  _         /   _  ._ _|_ o  _
- *    | \| (/_ \/\/   \_ (_) | | |  | (_|
- *                                     _|
- */
-
 /**
  * @typedef {import('@nmsmith22389/eslint-config/types/eslint').Linter.Config<Rules>} Config
  * @template {import('@nmsmith22389/eslint-config/types/eslint').Linter.RulesRecord} Rules
@@ -51,6 +15,9 @@
 module.exports = {
     root: true,
     extends: ['@nmsmith22389/eslint-config'],
+    parserOptions: {
+        project: './tsconfig.eslint.json',
+    },
     rules: {
         'import/max-dependencies': ['warn', { max: 15 }],
         'import/no-nodejs-modules': ['off'],
